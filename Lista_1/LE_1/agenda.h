@@ -12,4 +12,8 @@ void ordena( AGENDA *pAgenda[], int iEntradas );
 
 void excluir(AGENDA **pAgenda, int *piEntradas);
 void pesquisar(AGENDA *pAgenda, int iEntradas);
-void alterar(AGENDA *pAgenda, int iEntradas);
+void alterar(AGENDA *pAgenda, int iEntradas);    
+
+
+
+

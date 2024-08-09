@@ -11,6 +11,7 @@ int main() {
     inserir_pilha(pilha, 7);
     inserir_pilha(pilha, 6);
     inserir_pilha(pilha, 5);
+    inserir_pilha(pilha, 4);
     
    	if (pilha_vazia(pilha)) {
         printf("A pilha esta vazia.\n");
@@ -21,8 +22,10 @@ int main() {
 
     printf("Tamanho da pilha: %d\n", tamanho_da_pilha(pilha));
     
+
     mostrar_pilha(pilha);
     
+
     int item;
     if (topo_pilha(pilha, &item)) {
         printf("Elemento do topo: %d\n", item);
@@ -37,6 +40,7 @@ int main() {
     mostrar_pilha(pilha);
 
     liberar_pilha(pilha);
+
 
     return 0;
 }
