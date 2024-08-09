@@ -12,21 +12,26 @@ int main() {
     c2 = conj_cria();
 
     // Inserir elementos nos conjuntos
-    printf("Digite os elementos para o conjunto 1 (digite -1024 para parar):\n");
-    while (1) {
-        scanf("%d", &num);
-        if (num == -1024 )
-            break;
-        conj_insere(c1, num);
+  printf("Digite os elementos para o conjunto 1 (pressione Enter para parar):\n");
+	char linha[1024];
+	while (1) {
+    if (fgets(linha, sizeof(linha), stdin) == NULL || linha[0] == '\n') {
+        break;
     }
+    sscanf(linha, "%d", &num);
+    conj_insere(c1, num);
+}
 
-    printf("Digite os elementos para o conjunto 2 (digite -1024 para parar):\n");
-    while (1) {
-        scanf("%d", &num);
-        if (num == -1024)
-            break;
-        conj_insere(c2, num);
+    printf("Digite os elementos para o conjunto 2 (pressione Enter para parar):\n");
+	while (1) {
+    if (fgets(linha, sizeof(linha), stdin) == NULL || linha[0] == '\n') {
+        break;
     }
+    sscanf(linha, "%d", &num);
+    conj_insere(c2, num);
+}
+
+
     conj_bubble_sort(c1);
     conj_bubble_sort(c2);
     printf("Conjunto 1: ");

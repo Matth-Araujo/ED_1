@@ -4,10 +4,6 @@
 #include "agenda.h"
 
 
-void clearScreen() { 
-    system("clear"); 
- }
-
 
 void aloca(AGENDA **pAgenda, int *piEntradas) {
     *pAgenda = (AGENDA *)realloc(*pAgenda, (*piEntradas + 1) * sizeof(AGENDA));
@@ -37,7 +33,7 @@ void pesquisar( AGENDA *pAgenda, int iEntradas){
   verificacao_input(nome);
   for(i = 0; i< iEntradas;i++){
     int tamanho_string = strcmp(pAgenda[i].nome,nome); // funcao que compara duas strings caractere por caracter
-    if(tamanho_string == 0){ // o resultado da strcmp é um inteiro. Se esse inteiro for igual 0, significa que as strings são iguais
+    if(tamanho_string == 0){ // o resultado da strcmp ï¿½ um inteiro. Se esse inteiro for igual 0, significa que as strings sï¿½o iguais
       printf("\nConsulta encontrado\n");
       printf("\nNome do cliente: %s", pAgenda[i].nome);
       printf("\n email:  %s", pAgenda[i].email);
@@ -45,7 +41,7 @@ void pesquisar( AGENDA *pAgenda, int iEntradas){
       break;
     }
     else {
-      printf("\nConsulta não encontrado!\n");
+      printf("\nConsulta nao encontrado!\n");
     }
   }
 }
@@ -75,50 +71,30 @@ void excluir( AGENDA **pAgenda, int *iEntradas){
       break;
     }
     else {
-      printf("\nConsulta não encontrado!\n");
+      printf("\nConsulta nao encontrado!\n");
     }
   }
 }
 
-
-
-
-
-
-
-
-int partition(AGENDA *pAgenda, int inicio, int fim) {
-    char *pivo = pAgenda[fim].nome;
-    int i = inicio - 1;
-int j;
-    for (j = inicio; j <= fim - 1; j++) {
-        if (strcmp(pAgenda[j].nome, pivo) < 0) {
-            i++;
-            AGENDA temp = pAgenda[i];
-            pAgenda[i] = pAgenda[j];
-            pAgenda[j] = temp;
+void bubbleSort(AGENDA ***pAgenda, int iEntradas) {
+    int i, j;
+    for (i = 0; i < iEntradas-1; i++) {     
+        for (j = 0; j < iEntradas-i-1; j++) {
+            if (strcmp((*pAgenda)[j]->nome, (*pAgenda)[j+1]->nome) > 0) {
+                AGENDA *temp = (*pAgenda)[j];
+                (*pAgenda)[j] = (*pAgenda)[j+1];
+                (*pAgenda)[j+1] = temp;
+            }
         }
     }
-    AGENDA temp = pAgenda[i + 1];
-    pAgenda[i + 1] = pAgenda[fim];
-    pAgenda[fim] = temp;
-    return (i + 1);
 }
 
-void quicksort(AGENDA *pAgenda, int inicio, int fim) {
-    if (inicio < fim) {
-        int pIndex = partition(pAgenda, inicio, fim);
-        quicksort(pAgenda, inicio, pIndex - 1);
-        quicksort(pAgenda, pIndex + 1, fim);
-    }
-}
-
-void ordena(AGENDA *pAgenda, int iEntradas) {
-    quicksort(pAgenda, 0, iEntradas - 1);
+void ordena(AGENDA ***pAgenda, int iEntradas) {
+    bubbleSort(pAgenda, iEntradas);
 }
 
 void verificacao_input(char *name){
-  if ((strlen(name)>0) && (name[strlen(name) - 1] == '\n')){ // aspas simples pois é um caractere 
+  if ((strlen(name)>0) && (name[strlen(name) - 1] == '\n')){ // aspas simples pois ï¿½ um caractere 
     name[strlen(name) - 1] = '\0';
   }
 
@@ -155,7 +131,7 @@ void alterar(AGENDA *pAgenda, int iEntradas){
         }
     }
     if(!encontrado) {
-        printf("\nNome não encontrado!\n");
+        printf("\nNome nao encontrado!\n");
     }
 }
 

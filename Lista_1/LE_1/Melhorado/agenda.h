@@ -8,12 +8,11 @@ int telefone;
 
 
 
-void quicksort(AGENDA **pAgenda[], int inicio, int fim );
+void bubbleSort(AGENDA **pAgenda[], int iEntradas );
 void ordena( AGENDA **pAgenda[], int iEntradas );
 
 
 
-void clearScreen();
 void aloca(AGENDA **pAgenda, int *piEntradas);
 void verificacao_input(char *name);
 void consulta( AGENDA *pAgenda, int iEntradas);
